@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Grid, Paper, Avatar, TextField, Button, Typography, Radio, RadioGroup, FormControlLabel, FormControl, FormLabel } from "@mui/material";
+import { Grid, Paper, Avatar, TextField, Button, Typography, Radio, RadioGroup, FormControlLabel, FormControl, FormLabel,Select, MenuItem,InputLabel } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { Link as RouterLink } from "react-router-dom";
 
 const SignUp = () => {
-    const paperStyle = { padding: 20, height: 'auto', width: 280, margin: "80px auto", backgroundColor: '#F8FFF9' };
+    const paperStyle = { padding: 20, height: 'auto', width: 400, margin: "80px auto", backgroundColor: '#F8FFF9' };
     const avatarStyle = { backgroundColor: '#66b9bf' };
     const Fieldkstyle = { margin:'8px 0px'}
     const sorc = { margin: '8px 0px' };
@@ -35,6 +35,13 @@ const SignUp = () => {
         setValue(event.target.value);
     };
 
+    const [fieldOfStudy, setFieldOfStudy] = useState('');
+
+    const handleFieldOfStudyChange = (event) => {
+    setFieldOfStudy(event.target.value);
+};
+
+
     return (
         <Grid className="background-image">
             <Paper elevation={10} style={paperStyle}>
@@ -63,7 +70,20 @@ const SignUp = () => {
                     <>
                         <TextField id="Name" label="Name" variant="filled" style={Fieldkstyle} fullWidth required />
                         <TextField id="Email" label="Email" variant="filled" style={Fieldkstyle} fullWidth required />
-                        <TextField id="University" label="University" variant="filled" style={Fieldkstyle} fullWidth required />
+                        <FormControl fullWidth variant="filled" style={Fieldkstyle}>
+                            <InputLabel>University</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                value={fieldOfStudy}
+                                onChange={handleFieldOfStudyChange}
+                            >
+                                <MenuItem value={"Lut"}>Lappeenranta–Lahti University of Technology LUT</MenuItem>
+                                <MenuItem value={"University of Helsinki"}>University of Helsinki</MenuItem>
+                                <MenuItem value={"OULU Uni"}>University of Oulu</MenuItem>
+                                {/* Add more options as needed */}
+                            </Select>
+                        </FormControl>
                     </>
                 )}
 
